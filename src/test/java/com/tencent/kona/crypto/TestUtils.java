@@ -19,6 +19,7 @@
 
 package com.tencent.kona.crypto;
 
+import com.tencent.kona.KonaProvider;
 import com.tencent.kona.crypto.spec.SM2PrivateKeySpec;
 import com.tencent.kona.crypto.spec.SM2PublicKeySpec;
 
@@ -49,7 +50,7 @@ public class TestUtils {
     public static final byte[] EMPTY = new byte[0];
 
     public static void addProviders() {
-        Security.addProvider(new KonaCryptoProvider());
+        Security.addProvider(new KonaProvider());
     }
 
     public static void repeatTaskParallelly(Callable<Void> task, int count)

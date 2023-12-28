@@ -197,7 +197,7 @@ public final class OutputAnalyzer {
     /**
      * Verify that the stdout and stderr contents of output buffer does not contain the string
      *
-     * @param expectedString String that the buffer should not contain
+     * @param notExpectedString String that the buffer should not contain
      * @throws RuntimeException If the string was found
      */
     public OutputAnalyzer shouldNotContain(String notExpectedString) {
@@ -232,7 +232,7 @@ public final class OutputAnalyzer {
     /**
      * Verify that the stdout contents of output buffer does not contain the string
      *
-     * @param expectedString String that the buffer should not contain
+     * @param notExpectedString String that the buffer should not contain
      * @throws RuntimeException If the string was found
      */
     public OutputAnalyzer stdoutShouldNotContain(String notExpectedString) {
@@ -246,7 +246,7 @@ public final class OutputAnalyzer {
     /**
      * Verify that the stderr contents of output buffer does not contain the string
      *
-     * @param expectedString String that the buffer should not contain
+     * @param notExpectedString String that the buffer should not contain
      * @throws RuntimeException If the string was found
      */
     public OutputAnalyzer stderrShouldNotContain(String notExpectedString) {
