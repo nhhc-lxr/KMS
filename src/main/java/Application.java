@@ -1,11 +1,10 @@
 import com.tencent.kona.KonaProvider;
 import config.ConfigLoader;
+import security.SM2;
 import storage.KeyManager;
 import storage.KeyStoreLoader;
 
-import java.security.Key;
-import java.security.KeyStore;
-import java.security.Security;
+import java.security.*;
 
 public class Application {
 
@@ -23,10 +22,16 @@ public class Application {
          * C2SadhLtNEfknzNCVyyEtjEm9W2VWwlJZv3Z7vE=
          * -----END CERTIFICATE-----
          */
-        KeyStoreLoader keyStoreLoader = new KeyStoreLoader();
+        /*KeyStoreLoader keyStoreLoader = new KeyStoreLoader();
         KeyStore keyStore = keyStoreLoader.loadKeyStore(ConfigLoader.KEYSTORE_PATH, ConfigLoader.KEYSTORE_File_NAME, ConfigLoader.KEYSTORE_PASSWORD);
         Key key = keyStore.getKey("ec-sm2", ConfigLoader.KEYSTORE_PASSWORD.toCharArray());
         System.out.println(key.getAlgorithm());
-        System.out.println(key.getFormat());
+        System.out.println(key.getFormat());*/
+        KeyPair keyPair = SM2.generateSM2KeyPair();
+        PublicKey generatedPublicKey = keyPair.getPublic();
+        PrivateKey generatedPrivateKey = keyPair.getPrivate();
+        System.out.println(generatedPublicKey.getFormat());
+        System.out.println(generatedPrivateKey.getFormat());
+        //String publicKeyStr =
     }
 }
