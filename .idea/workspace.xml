@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5d09b529-976a-41bb-8119-69a06acf219f" name="Changes" comment="Changes">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/personal/certificate.crt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/personal/certificate.pem" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/personal/keystore.p12" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/personal/truststore.p12" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/config/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/config/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/security/SM2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/security/SM2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/KeyStoreLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/KeyStoreLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/personal/PersonalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/personal/PersonalTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;nhhc-lxr&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="779efd68-756b-4500-a42c-79593bf8b6d5" />
+        <option name="url" value="https://github.com/nhhc-lxr/KMS.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2a142xQMXa51erY1ETDbP5d2Isw" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.PersonalTest.SM4test.executor": "Run",
+    "JUnit.PersonalTest.executor": "Run",
+    "JUnit.PersonalTest.outPutCert.executor": "Run",
+    "JUnit.PersonalTest.testSM4KeyGen.executor": "Run",
+    "Maven.KMS [clean].executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/data-wushan/lxr/Projects/KMS/src/test/resources/personal",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "模块",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "vcs.Git",
+    "vue.rearranger.settings.migration": "true",
+    "应用程序.Application.executor": "Run"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\data-wushan\lxr\Projects\KMS\src\test\resources\personal" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.PersonalTest.outPutCert">
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Application" />
+      <module name="KMS" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersonalTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="KMS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="personal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="personal" />
+      <option name="MAIN_CLASS_NAME" value="personal.PersonalTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersonalTest.SM4test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="KMS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="personal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="personal" />
+      <option name="MAIN_CLASS_NAME" value="personal.PersonalTest" />
+      <option name="METHOD_NAME" value="SM4test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersonalTest.outPutCert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="KMS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="personal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="personal" />
+      <option name="MAIN_CLASS_NAME" value="personal.PersonalTest" />
+      <option name="METHOD_NAME" value="outPutCert" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersonalTest.testSM4KeyGen" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="KMS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="personal.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="personal" />
+      <option name="MAIN_CLASS_NAME" value="personal.PersonalTest" />
+      <option name="METHOD_NAME" value="testSM4KeyGen" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.PersonalTest.outPutCert" />
+        <item itemvalue="JUnit.PersonalTest" />
+        <item itemvalue="JUnit.PersonalTest.SM4test" />
+        <item itemvalue="JUnit.PersonalTest.testSM4KeyGen" />
+        <item itemvalue="应用程序.Application" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-1.8.0_392-corretto-1.8.0_392-249ae16d76d6-ec8bc16d" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5d09b529-976a-41bb-8119-69a06acf219f" name="Changes" comment="" />
+      <created>1703472548999</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1703472548999</updated>
+      <workItem from="1703472550505" duration="29000" />
+      <workItem from="1703472583953" duration="7457000" />
+      <workItem from="1703487545902" duration="3000" />
+      <workItem from="1703488746264" duration="7050000" />
+      <workItem from="1703551415447" duration="294000" />
+      <workItem from="1703572544905" duration="1185000" />
+      <workItem from="1703576571717" duration="5766000" />
+      <workItem from="1703723754168" duration="4628000" />
+      <workItem from="1703828204541" duration="435000" />
+      <workItem from="1703828642614" duration="9170000" />
+    </task>
+    <task id="LOCAL-00001" summary="Changes">
+      <option name="closed" value="true" />
+      <created>1703723864658</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1703723864658</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes" />
+  </component>
+</project>

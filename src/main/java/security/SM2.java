@@ -1,7 +1,5 @@
 package security;
 
-import com.sun.deploy.util.StringUtils;
-
 import javax.crypto.Cipher;
 import java.security.*;
 import java.security.spec.ECGenParameterSpec;

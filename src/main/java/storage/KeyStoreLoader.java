@@ -14,7 +14,7 @@ public class KeyStoreLoader {
     /**
      * 默认参数读取本地keystore文件
      */
-    public KeyStore loadKeyStore(String keyStorePath, String keyStoreFileName, String keyStorePassword)
+    public static KeyStore loadKeyStore(String keyStorePath, String keyStoreFileName, String keyStorePassword)
             throws KeyStoreException, NoSuchProviderException {
         return loadKeyStore("PKCS12", "Kona", keyStorePath, keyStoreFileName, keyStorePassword.toCharArray());
 
@@ -26,7 +26,7 @@ public class KeyStoreLoader {
      * @param keyStoreType "PKCS12"或"JKS"
      * @param provider     "KonaPKIX"
      */
-    public KeyStore loadKeyStore(String keyStoreType, String provider, String keyStorePath, String keyStoreFileName,
+    public static KeyStore loadKeyStore(String keyStoreType, String provider, String keyStorePath, String keyStoreFileName,
                                  char[] keyStorePassword) throws KeyStoreException, NoSuchProviderException {
         KeyStore loadedKeyStore = KeyStore.getInstance(keyStoreType, provider);
         Path path = Paths.get(keyStorePath + keyStoreFileName);

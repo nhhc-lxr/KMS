@@ -1,41 +1,40 @@
 package personal;
 
 import com.tencent.kona.KonaProvider;
-import com.tencent.kona.crypto.CryptoUtils;
-import com.tencent.kona.crypto.provider.SM4GenParameterSpec;
-import com.tencent.kona.crypto.provider.SM4KeyGenerator;
-import com.tencent.kona.crypto.provider.SM4KeyGeneratorTest;
-import com.tencent.kona.crypto.provider.SM4ParameterGenerator;
 import com.tencent.kona.crypto.spec.SM2PrivateKeySpec;
 import com.tencent.kona.crypto.spec.SM2PublicKeySpec;
 import com.tencent.kona.crypto.spec.SM2SignatureParameterSpec;
+import com.tencent.kona.pkix.PKIXInsts;
 import com.tencent.kona.sun.security.util.DerValue;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import security.SM2;
+import storage.KeyStoreLoader;
 
 import javax.crypto.*;
 import javax.crypto.spec.GCMParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
+import javax.net.ssl.SSLContext;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.*;
+import java.security.cert.CertificateEncodingException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.security.interfaces.ECPublicKey;
-import java.security.spec.AlgorithmParameterSpec;
+import java.security.spec.InvalidParameterSpecException;
+import java.util.Base64;
+import java.util.Enumeration;
+import java.util.Properties;
 
 import static com.tencent.kona.crypto.CryptoUtils.toBytes;
 import static com.tencent.kona.crypto.CryptoUtils.toHex;
-import static com.tencent.kona.crypto.TestUtils.PROVIDER;
-import static com.tencent.kona.crypto.util.Constants.SM4_GCM_IV_LEN;
-import static com.tencent.kona.crypto.util.Constants.SM4_GCM_TAG_LEN;
+import static config.Constants.*;
 
 public class PersonalTest {
-    public static final String PROVIDER = "Kona";
-    private final static String PUB_KEY
-            = "041D9E2952A06C913BAD21CCC358905ADB3A8097DB6F2F87EB5F393284EC2B7208C30B4D9834D0120216D6F1A73164FDA11A87B0A053F63D992BFB0E4FC1C5D9AD";
-    private final static String PRI_KEY
-            = "3B03B35C2F26DBC56F6D33677F1B28AF15E45FE9B594A6426BDCAD4A69FF976B";
-    private final static byte[] ID = toBytes("01234567");
 
     private final static byte[] MESSAGE = "测试加密用字符串数据".getBytes();
 
@@ -46,7 +45,7 @@ public class PersonalTest {
 
     @Test
     public void testSM4KeyGen() throws Exception {
-        KeyGenerator keyGen = KeyGenerator.getInstance("SM4", PROVIDER);
+        KeyGenerator keyGen = KeyGenerator.getInstance(ALGORITHM_SM4, PROVIDER);
         SecretKey key = keyGen.generateKey();
         System.out.println(key.getEncoded().length);
 
@@ -56,8 +55,7 @@ public class PersonalTest {
     }
 
     @Test
-    public void SM4test() throws NoSuchPaddingException, NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IOException {
-        String message;
+    public void SM4test() throws NoSuchPaddingException, NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IOException, InvalidParameterSpecException {
 
         SecureRandom secureRandom = new SecureRandom();
         // 生成随机的密钥材料，例如128位的密钥
@@ -69,32 +67,30 @@ public class PersonalTest {
         System.out.println("Generated GCM IV: " + toHex(iv));
 
 
-        KeyGenerator keyGen = KeyGenerator.getInstance("SM4", PROVIDER);
+        KeyGenerator keyGen = KeyGenerator.getInstance(ALGORITHM_SM4, PROVIDER);
         SecretKey secretKey = keyGen.generateKey();
-        SM4ParameterGenerator sm4ParameterGenerator = new SM4ParameterGenerator();
-        sm4ParameterGenerator.
 
+        Cipher cipher = Cipher.getInstance(TRANSFORMATION_SM4_GCM, PROVIDER);
+        //生成IV
+        AlgorithmParameters parameters = cipher.getParameters();
+        GCMParameterSpec parameterSpec = parameters.getParameterSpec(GCMParameterSpec.class);
+        byte[] cipherGeneratedIV = parameterSpec.getIV();
+        System.out.println("----------"+toHex(cipherGeneratedIV));
+        System.out.println("----------"+toHex(gcmDecodeIV(parameters.getEncoded())));
 
-        AlgorithmParameterGenerator gcmParamGen = AlgorithmParameterGenerator.getInstance("SM4");
-        gcmParamGen.init(new SM4GenParameterSpec(GCMParameterSpec.class));
-        AlgorithmParameters gcmParams = gcmParamGen.generateParameters();
-        byte[] encoded = gcmParams.getEncoded();
-        System.out.println(toHex(gcmDecode(gcmParams.getEncoded())));
-
-
-        /*Cipher cipher = Cipher.getInstance("SM4/GCM/NoPadding", "Kona");
-
-        cipher.init(Cipher.ENCRYPT_MODE, secretKey, gcmParams);
+        //使用SM4密钥和IV加密
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey, parameters);
         byte[] ciphertext = cipher.doFinal(MESSAGE);
-        cipher.init(Cipher.DECRYPT_MODE, secretKey, gcmParams);
+        //解密
+        cipher.init(Cipher.DECRYPT_MODE, secretKey, parameters);
         byte[] cleartext = cipher.doFinal(ciphertext);
 
         System.out.println(new String(MESSAGE));
-        System.out.println(new String(cleartext));*/
+        System.out.println(new String(cleartext));
 
     }
 
-    private byte[] gcmDecode(byte[] encoded) throws IOException {
+    private byte[] gcmDecodeIV(byte[] encoded) throws IOException {
         DerValue val = new DerValue(encoded);
         return val.data.getOctetString();
     }
@@ -122,39 +118,29 @@ public class PersonalTest {
         System.out.println("---------------");
     }
 
-    @Test
-    public void testSignature() throws Exception {
-        testSignature("SM2");
-    }
 
     @Test
-    public void testAlias() throws Exception {
-        testSignature("SM3withSM2");
-    }
+    public void outPutCert() throws KeyStoreException, NoSuchProviderException, CertificateEncodingException {
+        // 读取 KeyStore 文件
+        KeyStore keyStore = KeyStoreLoader.loadKeyStore("src/test/resources/personal/", "truststore.p12", "truststorepass");
+        Enumeration<String> aliases = keyStore.aliases();
+        while (aliases.hasMoreElements()) {
+            String alias = aliases.nextElement();
+            System.out.println("Alias: " + alias);
+        }
 
-    private void testSignature(String name) throws Exception {
-        KeyFactory keyFactory = KeyFactory.getInstance("SM2", PROVIDER);
-        SM2PublicKeySpec publicKeySpec = new SM2PublicKeySpec(toBytes(PUB_KEY));
-        PublicKey pubKey = keyFactory.generatePublic(publicKeySpec);
-        SM2PrivateKeySpec privateKeySpec = new SM2PrivateKeySpec(toBytes(PRI_KEY));
-        PrivateKey priKey = keyFactory.generatePrivate(privateKeySpec);
+        // 导出证书
+        X509Certificate certificate = (X509Certificate) keyStore.getCertificate("ca");
+        byte[] certBytes = certificate.getEncoded();
+        String encodedCert = Base64.getMimeEncoder().encodeToString(certBytes);
 
-        SM2SignatureParameterSpec paramSpec
-                = new SM2SignatureParameterSpec(ID, (ECPublicKey) pubKey);
-
-        Signature signer = Signature.getInstance(name, PROVIDER);
-        signer.setParameter(paramSpec);
-        signer.initSign(priKey);
-
-        signer.update(MESSAGE);
-        byte[] signature = signer.sign();
-
-        Signature verifier = Signature.getInstance(name, PROVIDER);
-        verifier.setParameter(paramSpec);
-        verifier.initVerify(pubKey);
-        verifier.update(MESSAGE);
-        boolean verified = verifier.verify(signature);
-
-        Assertions.assertTrue(verified);
+        try (FileOutputStream fos = new FileOutputStream("src/test/resources/personal/certificate.pem")) {
+            fos.write("-----BEGIN CERTIFICATE-----\n".getBytes());
+            fos.write(encodedCert.getBytes());
+            fos.write("\n-----END CERTIFICATE-----".getBytes());
+        } catch (IOException e) {
+            // 处理文件操作异常
+            e.printStackTrace();
+        }
     }
 }
