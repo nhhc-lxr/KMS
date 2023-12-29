@@ -2,18 +2,32 @@ package personal;
 
 import com.tencent.kona.KonaProvider;
 import com.tencent.kona.crypto.CryptoUtils;
+import com.tencent.kona.crypto.provider.SM4GenParameterSpec;
+import com.tencent.kona.crypto.provider.SM4KeyGenerator;
+import com.tencent.kona.crypto.provider.SM4KeyGeneratorTest;
+import com.tencent.kona.crypto.provider.SM4ParameterGenerator;
 import com.tencent.kona.crypto.spec.SM2PrivateKeySpec;
 import com.tencent.kona.crypto.spec.SM2PublicKeySpec;
 import com.tencent.kona.crypto.spec.SM2SignatureParameterSpec;
+import com.tencent.kona.sun.security.util.DerValue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import security.SM2;
 
+import javax.crypto.*;
+import javax.crypto.spec.GCMParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import java.io.IOException;
 import java.security.*;
 import java.security.interfaces.ECPublicKey;
+import java.security.spec.AlgorithmParameterSpec;
 
 import static com.tencent.kona.crypto.CryptoUtils.toBytes;
+import static com.tencent.kona.crypto.CryptoUtils.toHex;
+import static com.tencent.kona.crypto.TestUtils.PROVIDER;
+import static com.tencent.kona.crypto.util.Constants.SM4_GCM_IV_LEN;
+import static com.tencent.kona.crypto.util.Constants.SM4_GCM_TAG_LEN;
 
 public class PersonalTest {
     public static final String PROVIDER = "Kona";
@@ -23,12 +37,66 @@ public class PersonalTest {
             = "3B03B35C2F26DBC56F6D33677F1B28AF15E45FE9B594A6426BDCAD4A69FF976B";
     private final static byte[] ID = toBytes("01234567");
 
-    private final static byte[] MESSAGE = toBytes(
-            "4003607F75BEEE81A027BB6D265BA1499E71D5D7CD8846396E119161A57E01EEB91BF8C9FE");
+    private final static byte[] MESSAGE = "测试加密用字符串数据".getBytes();
 
     @BeforeAll
     public static void setup() {
         Security.addProvider(new KonaProvider());
+    }
+
+    @Test
+    public void testSM4KeyGen() throws Exception {
+        KeyGenerator keyGen = KeyGenerator.getInstance("SM4", PROVIDER);
+        SecretKey key = keyGen.generateKey();
+        System.out.println(key.getEncoded().length);
+
+        keyGen.init(128);
+        key = keyGen.generateKey();
+        System.out.println(key.getEncoded().length);
+    }
+
+    @Test
+    public void SM4test() throws NoSuchPaddingException, NoSuchAlgorithmException, NoSuchProviderException, InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException, IOException {
+        String message;
+
+        SecureRandom secureRandom = new SecureRandom();
+        // 生成随机的密钥材料，例如128位的密钥
+        byte[] keyMaterial = new byte[16]; // 16 bytes = 128 bits
+        secureRandom.nextBytes(keyMaterial);// 12 bytes = 96 bits
+        byte[] iv = new byte[12];
+        secureRandom.nextBytes(iv);
+        System.out.println("Generated key material: " + toHex(keyMaterial));
+        System.out.println("Generated GCM IV: " + toHex(iv));
+
+
+        KeyGenerator keyGen = KeyGenerator.getInstance("SM4", PROVIDER);
+        SecretKey secretKey = keyGen.generateKey();
+        SM4ParameterGenerator sm4ParameterGenerator = new SM4ParameterGenerator();
+        sm4ParameterGenerator.
+
+
+        AlgorithmParameterGenerator gcmParamGen = AlgorithmParameterGenerator.getInstance("SM4");
+        gcmParamGen.init(new SM4GenParameterSpec(GCMParameterSpec.class));
+        AlgorithmParameters gcmParams = gcmParamGen.generateParameters();
+        byte[] encoded = gcmParams.getEncoded();
+        System.out.println(toHex(gcmDecode(gcmParams.getEncoded())));
+
+
+        /*Cipher cipher = Cipher.getInstance("SM4/GCM/NoPadding", "Kona");
+
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey, gcmParams);
+        byte[] ciphertext = cipher.doFinal(MESSAGE);
+        cipher.init(Cipher.DECRYPT_MODE, secretKey, gcmParams);
+        byte[] cleartext = cipher.doFinal(ciphertext);
+
+        System.out.println(new String(MESSAGE));
+        System.out.println(new String(cleartext));*/
+
+    }
+
+    private byte[] gcmDecode(byte[] encoded) throws IOException {
+        DerValue val = new DerValue(encoded);
+        return val.data.getOctetString();
     }
 
     @Test
