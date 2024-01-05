@@ -990,7 +990,7 @@ public class SimpleOCSPServer {
 
     /**
      * Simple nested class to handle OCSP requests without making
-     * changes to sun.security.provider.certpath.OCSPRequest
+     * changes to sun.com.nhhc.security.provider.certpath.OCSPRequest
      */
     public class LocalOcspRequest {
 
@@ -1287,7 +1287,7 @@ public class SimpleOCSPServer {
 
     /**
      * Simple nested class to handle OCSP requests without making
-     * changes to sun.security.provider.certpath.OCSPResponse
+     * changes to sun.com.nhhc.security.provider.certpath.OCSPResponse
      */
     public class LocalOcspResponse {
         private final int version = 0;

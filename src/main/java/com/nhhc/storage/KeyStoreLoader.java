@@ -1,4 +1,4 @@
-package storage;
+package com.nhhc.storage;
 
 import java.io.InputStream;
 import java.nio.file.Files;

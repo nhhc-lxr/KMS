@@ -68,7 +68,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 /**
- * The utilities for testing certification and key store.
+ * The utilities for testing com.nhhc.certification and key store.
  */
 public class TestUtils {
 

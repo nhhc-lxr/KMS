@@ -338,7 +338,7 @@ public final class Utils {
      *
      * Example output from jcmd is:
      * 12498 sun.tools.jcmd.JCmd -l
-     * 12254 /tmp/jdk8/tl/jdk/JTwork/classes/com/sun/tools/attach/Application.jar
+     * 12254 /tmp/jdk8/tl/jdk/JTwork/classes/com/sun/tools/attach/com.nhhc.Application.jar
      *
      * @param key A regular expression to search for.
      * @return The found pid, or -1 if not found.

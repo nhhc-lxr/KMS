@@ -1,47 +1,107 @@
 package personal;
 
 import com.tencent.kona.KonaProvider;
-import com.tencent.kona.crypto.spec.SM2PrivateKeySpec;
-import com.tencent.kona.crypto.spec.SM2PublicKeySpec;
-import com.tencent.kona.crypto.spec.SM2SignatureParameterSpec;
-import com.tencent.kona.pkix.PKIXInsts;
+import com.tencent.kona.pkix.PKIXUtils;
 import com.tencent.kona.sun.security.util.DerValue;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.junit.jupiter.api.Assertions;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import security.SM2;
-import storage.KeyStoreLoader;
+import com.nhhc.storage.SM2;
+import com.nhhc.storage.KeyStoreLoader;
 
 import javax.crypto.*;
 import javax.crypto.spec.GCMParameterSpec;
+import javax.net.ssl.KeyManager;
+import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import javax.net.ssl.TrustManagerFactory;
+import java.io.*;
 import java.security.*;
 import java.security.cert.CertificateEncodingException;
-import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import java.security.interfaces.ECPublicKey;
 import java.security.spec.InvalidParameterSpecException;
-import java.util.Base64;
+import java.util.Arrays;
 import java.util.Enumeration;
-import java.util.Properties;
 
-import static com.tencent.kona.crypto.CryptoUtils.toBytes;
 import static com.tencent.kona.crypto.CryptoUtils.toHex;
-import static config.Constants.*;
+import static com.nhhc.config.Constants.*;
 
 public class PersonalTest {
 
     private final static byte[] MESSAGE = "测试加密用字符串数据".getBytes();
 
+    private final static String TRUSTSTORE = "src/test/resources/personal/truststore.p12";
+    private final static String TRUSTSTOREPASSWORD = "truststorepass";
+    private final static String KEYSTORE = "src/test/resources/personal/keystore.p12";
+    private final static String KEYSTOREPASSWORD = "keystorepass";
+
     @BeforeAll
     public static void setup() {
         Security.addProvider(new KonaProvider());
     }
+
+
+    @Test
+    public void tlcpDemo() throws Exception {
+        CloseableHttpClient client = createClient();
+        // Access Servlet /hello over HTTPS scheme.
+        //HttpGet getMethod = new HttpGet(String.format("https://localhost:%d/test/jetty", 8443));
+        HttpGet getMethod = new HttpGet(String.format("https://localhost:%d/CARootCert/getCARootCert", 8443));
+
+        CloseableHttpResponse response = client.execute(getMethod);
+        client.close();
+
+        //System.out.println(response.toString());
+
+        HttpEntity entity = response.getEntity();
+        if (entity != null) {
+            String responseString = EntityUtils.toString(entity);
+            System.out.println(responseString); // 输出服务器返回的字符串
+        }
+        response.close();
+    }
+
+
+    // Create Apache HttpClient client, which supports TLCP connection.
+    private static CloseableHttpClient createClient() throws Exception {
+        SSLContext context = createContext();
+
+        SSLConnectionSocketFactory socketFactory
+                = new SSLConnectionSocketFactory(context);
+        return HttpClients.custom()
+                .setSSLSocketFactory(socketFactory).build();
+    }
+
+    private static SSLContext createContext() throws Exception {
+        // Load trust store
+        KeyStore trustStore = KeyStore.getInstance("PKCS12", "Kona");
+        try (FileInputStream keyStoreIn = new FileInputStream(TRUSTSTORE)) {
+            trustStore.load(keyStoreIn, TRUSTSTOREPASSWORD.toCharArray());
+        }
+
+        TrustManagerFactory tmf = TrustManagerFactory.getInstance("PKIX", "Kona");
+        tmf.init(trustStore);
+
+        // Load key store
+        KeyStore keyStore = KeyStore.getInstance("PKCS12", "Kona");
+        try (FileInputStream keyStoreIn = new FileInputStream(KEYSTORE)) {
+            keyStore.load(keyStoreIn, KEYSTOREPASSWORD.toCharArray());
+        }
+        KeyManagerFactory kmf = KeyManagerFactory.getInstance("NewSunX509", "Kona");
+        kmf.init(keyStore, KEYSTOREPASSWORD.toCharArray());
+
+        SSLContext context = SSLContext.getInstance("TLCP", "Kona");
+        KeyManager[] keyManagers = {};
+        context.init(kmf.getKeyManagers(), tmf.getTrustManagers(), new SecureRandom());
+        return context;
+    }
+
 
     @Test
     public void testSM4KeyGen() throws Exception {
@@ -75,8 +135,8 @@ public class PersonalTest {
         AlgorithmParameters parameters = cipher.getParameters();
         GCMParameterSpec parameterSpec = parameters.getParameterSpec(GCMParameterSpec.class);
         byte[] cipherGeneratedIV = parameterSpec.getIV();
-        System.out.println("----------"+toHex(cipherGeneratedIV));
-        System.out.println("----------"+toHex(gcmDecodeIV(parameters.getEncoded())));
+        System.out.println("----------" + toHex(cipherGeneratedIV));
+        System.out.println("----------" + toHex(gcmDecodeIV(parameters.getEncoded())));
 
         //使用SM4密钥和IV加密
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, parameters);
@@ -122,7 +182,7 @@ public class PersonalTest {
     @Test
     public void outPutCert() throws KeyStoreException, NoSuchProviderException, CertificateEncodingException {
         // 读取 KeyStore 文件
-        KeyStore keyStore = KeyStoreLoader.loadKeyStore("src/test/resources/personal/", "truststore.p12", "truststorepass");
+        KeyStore keyStore = KeyStoreLoader.loadKeyStore("src/test/resources/personal/", "keystore.p12", "keystorepass");
         Enumeration<String> aliases = keyStore.aliases();
         while (aliases.hasMoreElements()) {
             String alias = aliases.nextElement();
@@ -130,8 +190,10 @@ public class PersonalTest {
         }
 
         // 导出证书
-        X509Certificate certificate = (X509Certificate) keyStore.getCertificate("ca");
-        byte[] certBytes = certificate.getEncoded();
+        X509Certificate certificate = (X509Certificate) keyStore.getCertificate("ee-enc");
+        System.out.println(PKIXUtils.isEncCert(certificate));
+        System.out.println(Arrays.toString(certificate.getKeyUsage()));
+        /*byte[] certBytes = certificate.getEncoded();
         String encodedCert = Base64.getMimeEncoder().encodeToString(certBytes);
 
         try (FileOutputStream fos = new FileOutputStream("src/test/resources/personal/certificate.pem")) {
@@ -141,6 +203,6 @@ public class PersonalTest {
         } catch (IOException e) {
             // 处理文件操作异常
             e.printStackTrace();
-        }
+        }*/
     }
 }

@@ -5,17 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d09b529-976a-41bb-8119-69a06acf219f" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/personal/certificate.crt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/personal/certificate.pem" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/personal/keystore.p12" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/personal/truststore.p12" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/config/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/config/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/security/SM2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/security/SM2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/storage/KeyStoreLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/storage/KeyStoreLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/nhhc/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/nhhc/JettyServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/nhhc/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/nhhc/config/ServerCustomizer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/nhhc/controller/CARootCertController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/nhhc/controller/ResponseController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ssl/keystore.p12" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ssl/truststore.p12" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhhc/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/certification/Certification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhhc/certification/Certification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/config/ConfigLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhhc/config/ConfigLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/config/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhhc/config/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/security/SM2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhhc/storage/SM2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/KeyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhhc/storage/KeyManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/KeyStoreLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhhc/storage/KeyStoreLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/KeyStoreSaver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhhc/storage/KeyStoreSaver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/storage/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhhc/storage/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/util/KeyUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/nhhc/util/KeyUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/tencent/kona/pkix/SimpleOCSPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/tencent/kona/pkix/SimpleOCSPServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/tencent/kona/pkix/TestUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/tencent/kona/pkix/TestUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/tencent/kona/pkix/common/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/tencent/kona/pkix/common/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/tencent/kona/sun/security/util/math/intpoly/FieldGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/tencent/kona/sun/security/util/math/intpoly/FieldGen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/personal/PersonalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/personal/PersonalTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,46 +75,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.PersonalTest.SM4test.executor": "Run",
-    "JUnit.PersonalTest.executor": "Run",
-    "JUnit.PersonalTest.outPutCert.executor": "Run",
-    "JUnit.PersonalTest.testSM4KeyGen.executor": "Run",
-    "Maven.KMS [clean].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/data-wushan/lxr/Projects/KMS/src/test/resources/personal",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "模块",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "vue.rearranger.settings.migration": "true",
-    "应用程序.Application.executor": "Run"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.PersonalTest.SM4test.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PersonalTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PersonalTest.outPutCert.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PersonalTest.testSM4KeyGen.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PersonalTest.tlcpDemo.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.KMS [clean].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.JettyServer.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.TomcatServer.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/data-wushan/lxr/Projects/KMS/src/main/java/com/nhhc&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDK&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.097751714&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;应用程序.Application.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.JettyServer (1).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.JettyServer (2).executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.JettyServer.executor&quot;: &quot;Run&quot;,
+    &quot;应用程序.TomcatServer.executor&quot;: &quot;Run&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\data-wushan\lxr\Projects\KMS\src\main\java\com\nhhc" />
+      <recent name="D:\data-wushan\lxr\Projects\KMS\src\main\resources" />
+      <recent name="D:\data-wushan\lxr\Projects\KMS\src\main\java" />
       <recent name="D:\data-wushan\lxr\Projects\KMS\src\test\resources\personal" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PersonalTest.outPutCert">
-    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Application" />
-      <module name="KMS" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PersonalTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Spring Boot.JettyServer">
+    <configuration name="PersonalTest.tlcpDemo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="KMS" />
       <extension name="coverage">
         <pattern>
@@ -109,66 +132,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="personal" />
       <option name="MAIN_CLASS_NAME" value="personal.PersonalTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PersonalTest.SM4test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="KMS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="personal.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="personal" />
-      <option name="MAIN_CLASS_NAME" value="personal.PersonalTest" />
-      <option name="METHOD_NAME" value="SM4test" />
+      <option name="METHOD_NAME" value="tlcpDemo" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PersonalTest.outPutCert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JettyServer" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="KMS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="personal.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="personal" />
-      <option name="MAIN_CLASS_NAME" value="personal.PersonalTest" />
-      <option name="METHOD_NAME" value="outPutCert" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PersonalTest.testSM4KeyGen" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="KMS" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="personal.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="personal" />
-      <option name="MAIN_CLASS_NAME" value="personal.PersonalTest" />
-      <option name="METHOD_NAME" value="testSM4KeyGen" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.nhhc.JettyServer" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PersonalTest.outPutCert" />
-        <item itemvalue="JUnit.PersonalTest" />
-        <item itemvalue="JUnit.PersonalTest.SM4test" />
-        <item itemvalue="JUnit.PersonalTest.testSM4KeyGen" />
-        <item itemvalue="应用程序.Application" />
+        <item itemvalue="Spring Boot.JettyServer" />
+        <item itemvalue="JUnit.PersonalTest.tlcpDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -176,6 +156,7 @@
     <attachedChunks>
       <set>
         <option value="jdk-1.8.0_392-corretto-1.8.0_392-249ae16d76d6-ec8bc16d" />
+        <option value="jdk-1.8.0_392-corretto-1.8.0_392-f644763e9732-f719d367" />
       </set>
     </attachedChunks>
   </component>
@@ -196,7 +177,14 @@
       <workItem from="1703576571717" duration="5766000" />
       <workItem from="1703723754168" duration="4628000" />
       <workItem from="1703828204541" duration="435000" />
-      <workItem from="1703828642614" duration="9170000" />
+      <workItem from="1703828642614" duration="9206000" />
+      <workItem from="1704156434692" duration="6351000" />
+      <workItem from="1704163800572" duration="9000" />
+      <workItem from="1704163819200" duration="5753000" />
+      <workItem from="1704245396386" duration="2414000" />
+      <workItem from="1704250172332" duration="4100000" />
+      <workItem from="1704264160202" duration="111000" />
+      <workItem from="1704355072899" duration="7301000" />
     </task>
     <task id="LOCAL-00001" summary="Changes">
       <option name="closed" value="true" />
@@ -206,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703723864658</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Changes">
+      <option name="closed" value="true" />
+      <created>1703838856067</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1703838856067</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

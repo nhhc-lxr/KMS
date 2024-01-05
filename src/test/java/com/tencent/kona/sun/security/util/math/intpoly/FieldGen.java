@@ -475,9 +475,9 @@ public class FieldGen {
     public static void main(String[] args) throws Exception {
 
         FieldGen gen = new FieldGen(
-                "com.tencent.kona.sun.security.util.math.intpoly",
+                "com.tencent.kona.sun.com.nhhc.security.com.nhhc.util.math.intpoly",
                 "IntegerPolynomial",
-                Paths.get("kona-crypto/src/test/resources/com/tencent/kona/sun/security/util/math/intpoly/header.txt"),
+                Paths.get("kona-crypto/src/test/resources/com/tencent/kona/sun/com.nhhc.security/com.nhhc.util/math/intpoly/header.txt"),
                 Paths.get("kona-crypto/src/main/java"));
         for (FieldParams p : ALL_FIELDS) {
             System.out.println(p.className);

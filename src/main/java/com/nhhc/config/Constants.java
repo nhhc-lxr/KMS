@@ -1,4 +1,4 @@
-package config;
+package com.nhhc.config;
 
 public class Constants {
 

@@ -1,4 +1,4 @@
-package security;
+package com.nhhc.storage;
 
 import javax.crypto.Cipher;
 import java.security.*;
@@ -7,7 +7,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
-import static config.Constants.*;
+import static com.nhhc.config.Constants.*;
 
 public class SM2 {
 

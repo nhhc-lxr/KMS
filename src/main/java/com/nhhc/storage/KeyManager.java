@@ -1,7 +1,7 @@
-package storage;
+package com.nhhc.storage;
 
 import com.tencent.kona.sun.security.tools.keytool.Main;
-import config.ConfigLoader;
+import com.nhhc.config.ConfigLoader;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
